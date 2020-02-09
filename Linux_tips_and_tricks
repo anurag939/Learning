@@ -19,3 +19,16 @@ ip route add 192.168.10.0/24 via 192.168.10.1 dev enp0s8
 exit 0
 
 b) make it executable and restart the vm.
+
+
+
+pw="Password1234"
+
+expect -f - <<-EOF
+  set timeout 10
+
+  spawn sudo mysql_secure_installation
+  expect "*?assword*"
+  send -- "$pw\r"
+  expect eof
+EOF
