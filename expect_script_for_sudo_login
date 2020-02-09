@@ -1,0 +1,22 @@
+# Wait for the following script to execute don't interrupt in between.
+# You can aslo redirect the outout to a file by using > operator
+# Example ./expect_script_for_sudo_login anurag 10.10.0.4 mypassword 
+
+
+
+#!/usr/bin/expect
+set timeout 2
+set user [lindex $argv 0]
+set host [lindex $argv 1]
+set pass [lindex $argv 2]
+spawn ssh -q ${user}@${host}
+expect "*?assword*"
+send "$pass\r"
+expect "*?*"
+send "sudo cat /etc/sudoers\r"
+expect "*?assword*"
+send "Bangalore\r"
+sleep 1
+send "exit\r"
+interact
+
