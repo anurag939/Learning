@@ -15,7 +15,7 @@ send "$pass\r"
 expect "*?*"
 send "sudo cat /etc/sudoers\r"
 expect "*?assword*"
-send "Bangalore\r"
+send "mypassword\r"
 sleep 1
 send "exit\r"
 interact
